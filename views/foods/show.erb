@@ -6,20 +6,7 @@
 		<h2>Price: <%= @food.price %></h2>
 	</ul>
 
-	<a href="/foods/<%= food.id %>/edit">Edit Menu Item</a>
+	<a href="/foods/<%=@food.id%>/edit">Edit Menu Item</a>
 
-<h2>Parties that ordered <%=@food.name%></h2>
 
-<% @orders.each do |order| %>
-	<tr>
-		<td> <a href="/parties/<%= order.party_id%>"> <%= order.party_id %> </a> </td>
-		<td> <%= order.party.table_number %> </td>
-		<% if order.party %>
-		<td> <%= order.party.table_number %> </td>
-		<% else %>
-		<td> DELETED PARTY </td>  
-	<% end %>
-		<td> Created at: <%= order.created_at %> </td>
-	</tr>
-	<% end %>
 

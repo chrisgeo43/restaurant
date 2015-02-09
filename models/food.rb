@@ -2,11 +2,7 @@ require_relative 'concerns/display_price'
 
 class Food < ActiveRecord::Base
 	# has_many Meals
-	has_many :orders
 	has_many :parties, through: :orders
-
-	validates :name, uniqueness: true
-	include DisplayPrice
 end
 
 

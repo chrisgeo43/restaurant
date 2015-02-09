@@ -1,4 +1,4 @@
-<h1> Party <%= @party.id %> </h1>
+<h1> <%= @party.party_name %> Party  </h1>
 
 <ul>
   <li>Table: <%= @party.table_number %> </li>
@@ -10,7 +10,7 @@
 <h3>Start an Order</h3>
     <ul>
         <% @foods.each do |food| %>
-            <form action="/parties/<%= @party.id %>" method="POST">
+            <form action="/orders" method="POST">
                 <input type="hidden" name="order[food_id]" value="<%= food.id %>"><a href="/foods/<%= food.id %>"><%= food.name %> - $<%= food.price %></a>
                 <input type="hidden" name="order[party_id]" value="<%= @party.id %>">
                 <input type="submit" value="Add Item">
@@ -20,19 +20,18 @@
 
     <h3>Order Details</h3>
     <ul>
-        <form action="/parties/<%= @party.id %>/order" method="POST">
-            <% @party.orders.each do |order| %>
-                <li><%= order.food.name %> - $<%= order.food.price %></li>
-                
-                <input type="hidden" name="order[food_id]" value="<%= order.food.id %>">
-                <input type="hidden" name="order[party_id]" value="<%= order.party.id %>">
-            <% end %>
-
-        <input type="hidden" name="_method" value="POST">
-        <input type="submit" value="Submit Order">
-
+      <% @party.orders.each do |order| %>
+        <li><%= order.food.name %> - $<%= order.food.price %></li>
+        <form action="/orders/<%= order.id %>" method = "POST">
+          <br>
+          <input type="hidden" name="_method" value="DELETE">
+          <br>
+          <input type="submit" value="Delete food item">
         </form>
+      <% end %>
     </ul>
+
+    <h3>Subtotal: $<%= @party_order.sum(:price) %></h3>
 
 
 

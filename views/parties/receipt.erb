@@ -1,0 +1,15 @@
+<h2>Your receipt. Thank you! Please come again!</h2>
+
+<ul>
+	<% total = 0 %>
+	<% @orders.each do |order| %>
+		<% if order.food %>
+		<li> <%= order.food.name %>: $<%=order.display_price %></li>
+		<% else %>
+		<li> Food Deleted $<%order.display_price %></li>
+		<% end %>
+		<% total += order.price %>
+	<% end %>
+</ul>
+	<h3>Total = <sprintf('%.2f', total.to_s) %></h3>
+	<a href="/parties/<%= @id %>"> Return to party index</a>

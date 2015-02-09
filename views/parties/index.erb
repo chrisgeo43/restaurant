@@ -1,0 +1,21 @@
+<h2>Welcome to Jimmy Johns</h2>
+
+<h3>Parties</h3>
+
+<ul>
+	<% @parties.each do |party| %>
+    <tr>
+      <td> <a href="/parties/<%= party.id %>"> <%= party.party_name %> </a> </td>
+      <td> Table : <%= party.table_number %> </td>
+      <br>
+      <td> Party Size: <%= party.party_size %> </td>
+      <br>
+      <td> Created at: <%= party.created_at || "ages ago" %></td>
+      <br>
+      <td> Paid? <%= party.meal_paid %> </td>
+    	<br>
+    </tr>
+  <% end %>
+</ul>
+
+<a href="/parties/new">Add Party</a>

@@ -1,0 +1,12 @@
+<form action="/parties/<%= @party.id %>" method="POST">
+	Party Name:<input type="text" name="party[party_name]">	
+
+	Number of Guests:<input type="text" name="party[party_size]">
+	<br>
+	Table Number:<input type="text" name="party[table_number]">
+	<br>
+	Paid?:<input checked="checked" name="party[meal_paid]" type="radio" value="Yes">Yes <input name="party[meal_paid]" type="radio" value="No">No
+	<br>
+	<input type="hidden" name="_method" value="PATCH">
+	<input type="submit" value="Edit party">
+</form>

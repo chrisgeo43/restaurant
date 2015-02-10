@@ -1,10 +1,8 @@
 <h2>Brilliant!! Here is your receipt. Thank you! Please come again!</h2>
 
 <ul>
-	<% total = 0 %>
-	<% @party.orders.each do |order| %>
-		<li> <%= order.food.name %>: £<%= "%.2f" % (order.food.price).to_f %></li>
-		<% total += (order.food.price).to_f %>
+	
+
 </ul>
 	<h3>Total: £<%= "%.2f" % (@party.total_bill*1.05) %></h3>
 
@@ -15,7 +13,7 @@
     18% = £<%= "%.2f" % (@party.total_bill* 0.18) %>
     <br>
     20% = £<%= "%.2f" % (@party.total_bill* 0.20) %></h3>
-	<% end %>
+
 
 	<a href="/parties"> Return to Home</a>
 

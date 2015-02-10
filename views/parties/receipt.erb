@@ -1,15 +1,22 @@
-<h2>Your receipt. Thank you! Please come again!</h2>
+<h2>Brilliant!! Here is your receipt. Thank you! Please come again!</h2>
 
 <ul>
 	<% total = 0 %>
-	<% @orders.each do |order| %>
-		<% if order.food %>
-		<li> <%= order.food.name %>: $<%=order.display_price %></li>
-		<% else %>
-		<li> Food Deleted $<%order.display_price %></li>
-		<% end %>
-		<% total += order.price %>
-	<% end %>
+	<% @party.orders.each do |order| %>
+		<li> <%= order.food.name %>: £<%= "%.2f" % (order.food.price).to_f %></li>
+		<% total += (order.food.price).to_f %>
 </ul>
-	<h3>Total = <sprintf('%.2f', total.to_s) %></h3>
-	<a href="/parties/<%= @id %>"> Return to party index</a>
+	<h3>Total: £<%= "%.2f" % (@party.total_bill*1.05) %></h3>
+
+   <h3>Suggested Tips:
+   <br> 
+    15% = £<%= "%.2f" % (@party.total_bill* 0.15) %> 
+    <br>
+    18% = £<%= "%.2f" % (@party.total_bill* 0.18) %>
+    <br>
+    20% = £<%= "%.2f" % (@party.total_bill* 0.20) %></h3>
+	<% end %>
+
+	<a href="/parties"> Return to Home</a>
+
+

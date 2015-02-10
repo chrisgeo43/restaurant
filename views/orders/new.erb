@@ -1,0 +1,30 @@
+<section class="parties">
+	<ul>
+		<% @parties.each do |party_name| %>
+		<% party_name.each do |party_name| %>
+		<form action="/orders" method="POST">
+		<input type="hidden" name="party[party_id]" 
+		value="<%= party.id %>">
+					<input type="submit" value="<%= party.name %>">
+				</form>
+			<% end %>
+ 		<% end %>
+	</ul>
+</section>
+
+<aside class="orders">
+	<ul>
+		<% @foods.each do |category, list| %>
+			<h1><%= category.capitalize %></h1>
+			<% list.each do |food| %>
+			<form action="/orders" method="POST">
+				<input type="hidden" name="order[food_id]"
+				value="<%= food.id %>">
+				<input type="submit" value="<%= food.name %>">
+				</form>
+			<% end %>
+ 		<% end %>
+	</ul>
+</section>
+
+

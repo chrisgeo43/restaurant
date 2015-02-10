@@ -3,7 +3,7 @@
 		<h2>Name: <%= @food.name %></h2>
 		<h2>Description: <%= @food.description %></h2>
 		<h2>Category: <%= @food.category %></h2>
-		<h2>Price: <%= @food.price %></h2>
+		<h2>Price: £<%= "%.2f" % @food.price %></h2>
 	</ul>
 
 	<a href="/foods/<%=@food.id%>/edit">Edit Menu Item</a>

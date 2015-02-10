@@ -2,6 +2,11 @@ class Party < ActiveRecord::Base
 	# has_many Meals
 	has_many :foods, through: :orders
 	has_many :orders
+
+	def total_bill
+		self.foods.sum(:price)
+	end
+
 end
 
 

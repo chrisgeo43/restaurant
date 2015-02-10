@@ -17,21 +17,29 @@ enable :method_override
 #------Index-------
 	
 	get '/'  do
-		erb :"/index"
+		erb :"index"
 	end
 
 	get '/index'  do
 		erb :"/index"
 	end
 
-	get '/foods' do 
+	get '/about'  do
+		erb :"/about"
+	end
+
+	get '/foods' do
 		@foods = Food.all
 		erb :"/foods/index"
 	end
 
 	get '/parties' do 
-		@parties = Party.all.order(:id)
+		@parties = Party.all
 		erb :"/parties/index"
+	end
+
+	get '/orders' do
+		erb :"orders/index"
 	end
 
 #------New-------
@@ -58,8 +66,7 @@ enable :method_override
 	end
 
 	get '/parties/:id' do
-		party_id = params['id']
-		@party = Party.find(party_id)
+		@party = Party.find(params[:id])
 		@orders = @party.orders
 		#for adding food
 		@foods = Food.all
@@ -89,9 +96,8 @@ enable :method_override
 
 
 	post '/parties' do
-		params[:party][:paid] = 'f'
 		party = Party.create(params[:party])
-		redirect to '/parties/#{party.id}'
+		redirect to '/parties'
 	end
 
 	# post '/parties/:id/orders' do
@@ -126,10 +132,9 @@ enable :method_override
 	end
 
 	patch '/parties/:id' do
-		@party = Party.find(params[:id])
-		@party.update(params[:party])
-		@foods = Food.all
-		redirect '/parties/#{params[:id]}/receipt'
+		party = Party.find(params[:id])
+		party.update(params[:party])
+		redirect '/parties'
 	end
 
   patch '/orders/:id' do
@@ -138,6 +143,11 @@ enable :method_override
     redirect to "/parties/#{@order.party_id}"
   end 
 
+  patch "/parties/:id/checkout" do 
+  	@party = Party.find(params[:id])
+  	@party.update(meal_paid: "t")
+  	redirect to "/parties/#{@party.id}/receipt"
+  end
 
 #------Destroy------
 
@@ -163,13 +173,13 @@ enable :method_override
 
 	get '/parties/:id/receipt' do
 		@party = Party.find(params[:id])
-		erb :'order/receipt'
+		erb :'parties/receipt'
 	end
 
-	get '/parties/:id/checkout' do
-		@party = Party.find(params[:id])
-		erb :'parties/checkout'
-	end
+	# get '/parties/:id/checkout' do
+	# 	@party = Party.find(params[:id])
+	# 	erb :'parties/checkout'
+	# end
 
 	patch '/parties/:id/checkout' do
 		@party = Party.find(params[:id])
@@ -178,7 +188,7 @@ enable :method_override
     @party.tips = params[:party][:tips]
    	@party.save
 		
-		redirect to "/parties/#{@party.id}/final"
+		redirect to "/parties/#{@party.id}/receipt"
 	end
 
 	get '/parties/:id/final' do
@@ -187,10 +197,72 @@ enable :method_override
   end
 
 
+
+
 	# 	order = Order.where("party_id = params[:id] AND food_id = params[:food][:id]")
 	# 	order.delete(order)
 	# 	redirect to "/parties/#{params[:id]}/orders/new"
 	# end
+
+# #-----Employees-----
+
+#   get '/employees' do
+#     @employee = Employee.find(session[:employee_id])
+#     @employees = Employee.all
+#     erb :'employees/index'
+#   end
+
+#   get '/employees/index' do
+#     @employees = Employee.all
+#     erb :'employees/index'
+#   end
+
+#   get '/employees/new' do
+#     erb :'employees/new'
+#   end
+
+#   post '/employees' do
+#     employee = Employee.create(params[:employee])
+#     redirect to "employees/#{employee.id}"
+#   end
+
+#   get '/employees/login' do
+#     @employees = Employee.all
+#     erb :'employees/login'  
+#   end
+
+#   post '/employees/login' do
+#     if params[:password] == settings.rest_password
+#       session[:employee_id] = params[:employee_id]
+#       redirect to "/parties"
+#     else 
+#       redirect to "/employees/login"
+#     end
+#   end
+
+#   get '/employees/:id' do
+#     @employee = Employee.find(session[:employee_id])
+#     # @employee = Employee.find(params[:id])
+#     @parties = @employee.parties
+#     erb :'employees/show'
+#   end
+
+#   get '/employees/:id/edit' do
+#     @employee = Employee.find(params[:id])
+#     erb :'employees/edit'
+#   end
+
+#   patch '/employees/:id' do
+#     employee = Employee.find(params[:id])
+#     employee.update(params[:employee])
+#     redirect to "/employees/#{employee.id}"
+#   end
+
+#   delete '/employees/:id' do
+#     employee = Employee.find(params[:id])
+#     employee.destroy
+#     redirect to "/employees"    
+#   end
 
 
 #------Redirect-----

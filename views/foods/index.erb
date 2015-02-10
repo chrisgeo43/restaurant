@@ -1,13 +1,17 @@
 
-<h2>Jimmy Johns</h2>
+<h1>Jimmy Johns</h1>
+
+<h2 class="brit_wit">Smashing - Quite Posh!!!</h2>
 
 <ul>
-<% @foods.each do |food| %>
- 	<tr>
- 		<td><a href="/foods/<%= food.id %>"> <%= food.name %></a></td>
- 		<td><%= food.category %></a>
- </tr>
- 	<% end %>
+<% @foods.group_by{|food|food.category}.each do |category,foods| %>
+	<h2 class="category"><%= category.pluralize.titleize %></h2>
+		<% foods.each do |food| %>
+	<li>
+ 			<a href="/foods/<%= food.id %>"> <%= food.name %> - £<%= "%.2f" % (food.price) %></a>
+ </li>
+ 		<% end %>
+  <% end %>
 </ul>
 
-<a href="/foods/new">Add menu item</a>
+<a class="add_item" href="/foods/new">Add menu item</a>

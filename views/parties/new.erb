@@ -1,12 +1,17 @@
 <form action="/parties" method="POST">
-	Party Name:<input type="text" name="new_party[party_name]"> 
+	Party Name:<input type="text" name="party[party_name]"> 
 	<br>
-	Party Size:<input type="text" name="new_party[party_size]">
+	Party Size:<input type="text" name="party[party_size]">
 	<br>
-	Table Number:<input type="text" name="new_party[table_number]">
+	Table Number:<input type="text" name="party[table_number]">
 	<br>
-	Add Order: <input type=""
-	Paid?:<input checked="checked" name="new_party[meal_paid]" type="radio" value="true">Yes <input name="new_party[meal_paid]" type="radio" value="false">No
+	<br>
+	Paid? <input name="party[meal_paid]" type="radio" value="t">Yes 
+	<input checked="checked" name="party[meal_paid]" type="radio" value="f">No
+	<br>
+	Delivery? <input name="party[delivery]" type="radio" value="t">Yes 
+	<input checked="checked" name="party[delivery]" type="radio" value="f">No
+	<br>
 	<br>
 	<input type="submit" value="Add party">
 </form>

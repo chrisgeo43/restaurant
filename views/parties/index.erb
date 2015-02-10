@@ -1,21 +1,30 @@
-<h2>Welcome to Jimmy Johns</h2>
+<h1>Welcome to Jimmy Johns</h1>
 
-<h3>Parties</h3>
+<h4>Click on a Party to Add Order</h4>
 
-<ul>
-	<% @parties.each do |party| %>
-    <tr>
-      <td> <a href="/parties/<%= party.id %>"> <%= party.party_name %> </a> </td>
-      <td> Table : <%= party.table_number %> </td>
-      <br>
-      <td> Party Size: <%= party.party_size %> </td>
-      <br>
-      <td> Created at: <%= party.created_at || "ages ago" %></td>
-      <br>
-      <td> Paid? <%= party.meal_paid %> </td>
-    	<br>
-    </tr>
+<ul class="parties">
+	<% @parties.each do |party| %>      
+  <li> 
+    <a href ="/parties/<%= party.id %>"> <%= party.party_name %> </a> 
+    Table : <%= party.table_number %> 
+    <br>
+    Party Size: <%= party.party_size %>
+    <br>
+    Created at: <%= party.created_at %>
+    <br>
+    Paid? <%= party.meal_paid %> 
+    <br>
+    Delivery? <%= party.delivery %> <br>
+    <form action="/parties/<%=party.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Party">
+    <br>
+    </form>
+  </li>
   <% end %>
 </ul>
 
+
 <a href="/parties/new">Add Party</a>
+<br>
+

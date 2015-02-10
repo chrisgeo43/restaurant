@@ -1,3 +1,7 @@
+<h1>Jimmy Johns</h1>
+
+<h2>Edit <%= @party.name %></h2>
+
 <form action="/parties/<%= @party.id %>" method="POST">
 	Party Name:<input type="text" name="party[party_name]">	
 
@@ -7,6 +11,14 @@
 	<br>
 	Paid?:<input checked="checked" name="party[meal_paid]" type="radio" value="Yes">Yes <input name="party[meal_paid]" type="radio" value="No">No
 	<br>
+	Delivery?:<input name="party[delivery]" type="radio" value="Yes">Yes <input checked="checked" name="party[delivery]" type="radio" value="No">No
+	<br>
 	<input type="hidden" name="_method" value="PATCH">
 	<input type="submit" value="Edit party">
 </form>
+
+<form action="/parties/<%= @party.id %>" method = "POST">
+ 	<input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete party">
+</form>
+

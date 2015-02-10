@@ -1,8 +1,253 @@
+
 body{
 
-	background-color: lightgreen;
+	background-image: url('/lil_fiber.png');
+	background-color: grey;
+	width: 800px;
+	color: black;
+	margin: 0 auto;
+	font: 15px/18px arial,sans-serif;
+	height: 100%;
+
 }
 
-aside.orders {
+img.delivery{
+
+margin: 0 auto;
+width: 100%;
+
+} 
+
+img.logo{
+
+margin: 0 auto;
+width: 10%;
+height: 10%;
+float: left;
+
+} 
+
+
+
+aside {
 	float: right;
 }
+
+section.party_show {
+	float: left;
+}
+
+links: a {text-decoration:none;}
+
+a:visited {color: red;}
+
+li {list-style:none;}
+
+main {
+	opacity: 100%;
+  padding: 30px;
+}
+
+ul.party_details {
+	padding: 0px;
+}
+
+
+ul.order_start {
+	padding: 0px;
+	margin: 0px;
+	color: grey;
+}
+
+ul.order_details {
+	padding: 0px;
+	color: grey;
+  margin-bottom: 20px;
+  margin-top: 20px; 
+}
+  ul.order_details:visited {
+    color: gray; }
+  ul.order_details:hover {
+    color: black; }
+  ul.order_details:active {
+    color: white;}
+
+h3.order_start {
+margin: 0 auto;
+margin-top: 10px;
+
+}
+
+a {
+  color: gray;
+  text-decoration: none;
+  display: block;
+  padding: 2px; }
+  a:visited {
+    color: gray; }
+  a:hover {
+    color: black; }
+  a:active {
+    color: white; }
+
+nav {
+	  margin: 0 auto;
+	  text-align: center;
+	  padding: 10px;
+	  background: black;
+	  font-size: 20px; 
+	  border-color: white;
+	  border: white;
+	}
+
+nav li {
+    background: #111;
+    list-style: none;
+    display: inline-block;
+    margin: 0px 10px 0px 10px;
+    border: 10px;
+  }
+
+nav a {
+    color: white;
+    font-weight: bold;
+     }
+
+ul.parties {
+	padding: 0px;
+}
+
+a.party_hyperlink{
+		padding:0px;
+		}
+
+nav a:visited {
+      color: white; }
+ 
+nav a:hover {
+      display: inline-block;
+      color: red;
+      background-color: white; }
+    
+nav a:active {
+      color: white; }
+
+h1 {
+  font-family: 'Impact'; }
+
+h2 {
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center; }
+
+aside {
+	position: 740; 
+  padding: 0px;
+  margin: 0 auto;
+  text-align: left;
+  margin-bottom: 50px;
+
+  }
+
+aside.aside_h3 {
+
+  padding: 0px;
+  margin: 0 auto;
+  text-align: left;
+
+  }
+
+.clearfix:after {
+  clear: both;
+  display: block;
+  content: ""; }
+
+input[type="checkbox"] {
+  display: inline; }
+
+input[type="text"],
+input[type="number"],
+
+textarea {
+  background: lightgrey;
+  outline: none;
+  padding: 5px;
+  border-radius: 4px;
+  display: block;
+  width: auto; }
+
+input[type="submit"] {
+  text-align: left;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 5px 0px 5px 0px; }
+
+input[type="submit"]:hover {
+  background-color: black;
+  color: #F8F8FF;
+  cursor: pointer; }
+
+li {
+  list-style: none; }
+
+p {
+  line-height: 1.5em; }
+
+  h2.brit_wit{
+  	padding: 0px;
+  	text-align: left;
+  }
+
+  h2.category{
+  	text-align: left;
+  	padding-left: 0px;
+  }
+
+  a.add_item{
+
+  }
+
+.green {
+  color: green; }
+
+.red {
+  color: red; }
+
+.side_menu {
+  width: 200px;
+  float: right;
+  margin-top: -390px;
+  padding: 20px;
+  border: 1px solid gray; }
+  .side_menu input[type="submit"] {
+    display: inline; }
+
+
+ .parties:hover { }
+ .parties:active {}
+
+.order_change {
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+.homepage h1 {
+  text-align: center; }
+
+.receipt {
+  border: 1px solid black;
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px; }
+  .receipt .receipt_top,
+  .receipt .receipt_middle,
+  .receipt .receipt_bottom {
+    padding: 10px; }
+    .receipt .receipt_top h1,
+    .receipt .receipt_middle h1,
+    .receipt .receipt_bottom h1 {
+      text-align: center; }
+
+ol {
+  list-style: true; }

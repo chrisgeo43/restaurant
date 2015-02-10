@@ -3,8 +3,8 @@
 <ol>
 	<% @parties.each do |party| %>
 		<li>
-			Total: <%= currency(party.total) %><br>
-			Tips: <%= currency(party.tips) %><br>
+			Total: <%= £(party_order.sum) %><br>
+			Tax: <%= £(party_order.sum)* 0.0875 %><br>
 			Checkout time: <%= party.updated_at %><br>
 		</li>
 	<% end %>

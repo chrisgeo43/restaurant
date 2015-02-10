@@ -10,15 +10,12 @@ class Party < ActiveRecord::Base
 end
 
 
-
-
-
-
 # CREATE TABLE parties (
 # id SERIAL PRIMARY KEY,
 # party_name TEXT NOT NULL,
 # party_size INT NOT NULL,
 # table_number INT NOT NULL,
 # meal_paid BOOLEAN NOT NULL,
+# delivery TEXT,
 # created_at TIMESTAMP NOT NULL,
 # updated_at TIMESTAMP NOT NULL);

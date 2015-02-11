@@ -43,18 +43,22 @@
   </aside>
 
 <section class="party_show">
-<h3 class="order_start">Start an Order</h3>
-    <ul class="order_start">
-        <% @foods.each do |food| %>
-        <br>
-            <form action="/orders" method="POST">
-                <input type="hidden" name="order[food_id]" value="<%= food.id %>"><a href="/foods/<%= food.id %>"><%= food.name %> - $<%= "%.2f" % (food.price) %></a>
-                <input type="hidden" name="order[party_id]" value="<%= @party.id %>">
-                <input type="submit" value="Add Item">
-            </form>
-        <% end %>
-    </ul>
+  <h3 class="order_start">Start an Order</h3>
+  <ul class="order_start">
+    <% @foods.group_by{|food| food.category}.each do |category,foods| %>
+      <br>
+      <h2 class="category"><%= category.pluralize.titleize %></h2>
+      <% foods.each do |food| %>
+        <form action="/orders" method="POST">
+          <input type="hidden" name="order[food_id]" value="<%= food.id %>"><a href="/foods/<%= food.id %>"><%= food.name %> - $<%= "%.2f" % (food.price) %></a>
+          <input type="hidden" name="order[party_id]" value="<%= @party.id %>">
+          <input type="submit" value="Add Item">
+        </form>
+      <% end %>
+    <% end %>
+  </ul>
 </section>
+
 
 
 

@@ -16,3 +16,4 @@ end
 # price INT NOT NULL,
 # created_at TIMESTAMP NOT NULL,
 # updated_at TIMESTAMP NOT NULL);
+

@@ -1,25 +1,21 @@
 require 'bundler'
 Bundler.require
 
-if ENV['APP_ENV'] == 'production'
-	ActiveRecord::Base.establish_connection({
-		adapter: 'postgresql',
-		database: 'restaurant_crud'
-	})
-else
-	ActiveRecord::Base.establish_connection({
-		adapter: 'postgresql',
-		database: 'restaurant_crud',
-		host: "localhost", 
-		port: 5432
-	})
-end
+# if ENV['APP_ENV'] == 'production'
+# 	ActiveRecord::Base.establish_connection({
+# 		adapter: 'postgresql',
+# 		database: 'restaurant_crud'
+# 	})
+# else
+# 	ActiveRecord::Base.establish_connection({
+# 		adapter: 'postgresql',
+# 		database: 'restaurant_crud',
+# 		host: "localhost", 
+# 		port: 5432
+# 	})
+# end
 
-require_relative 'models/food'
-require_relative 'models/party'
-require_relative 'models/order'
-enable :method_override
-
+# helpers ApplicationHelper
 
 #------Index-------
 	
@@ -34,30 +30,33 @@ enable :method_override
 	get '/about'  do
 		erb :"/about"
 	end
+	#refactored
+	# get '/foods' do
+	# 	@foods = Food.all
+	# 	erb :"/foods/index"
+	# end
 
-	get '/foods' do
-		@foods = Food.all
-		erb :"/foods/index"
-	end
+	# refactored
+	# get '/parties' do 
+	# 	@parties = Party.all
+	# 	erb :"/parties/index"
+	# end
 
-	get '/parties' do 
-		@parties = Party.all
-		erb :"/parties/index"
-	end
-
-	get '/orders' do
-		erb :"orders/index"
-	end
+	# refactored
+	# get '/orders' do
+	# 	erb :"orders/index"
+	# end
 
 #------New-------
+	#refactored
+	# get '/foods/new' do
+	# 	erb :"/foods/new"
+	# end
 
-	get '/foods/new' do
-		erb :"/foods/new"
-	end
-
-	get '/parties/new' do
-		erb :"/parties/new"
-	end
+	# refactored
+	# get '/parties/new' do
+	# 	erb :"/parties/new"
+	# end
 
 	# get '/parties/:id/orders/new' do
 	# 	@party = Party.find(params[:id])
@@ -67,45 +66,48 @@ enable :method_override
 
 #------Show-------
 
-	get '/foods/:id' do
-		@food = Food.find(params[:id])
-		erb :"/foods/show"
-	end
+	#refactored
+	# get '/foods/:id' do
+	# 	@food = Food.find(params[:id])
+	# 	erb :"/foods/show"
+	# end
 
-	get '/parties/:id' do
-		@party = Party.find(params[:id])
-		@orders = @party.orders
-		#for adding food
-		@foods = Food.all
-		@party_order = @party.foods
-		erb :"/parties/show"
-	end
+	#refactored
+	# get '/parties/:id' do
+	# 	@party = Party.find(params[:id])
+	# 	@orders = @party.orders
+	# 	#for adding food
+	# 	@foods = Food.all
+	# 	@party_order = @party.foods
+	# 	erb :"/parties/show"
+	# end
 
-	get 'parties/:id/receipt' do 
-			@party = Party.find(params[:id])
-			@orders = @party.orders
-			@party.save_reciept
+	# get 'parties/:id/receipt' do 
+	# 		@party = Party.find(params[:id])
+	# 		@orders = @party.orders
+	# 		@party.save_reciept
 			
-			erb :'/parties/receipt'
-	end
+	# 		erb :'/parties/receipt'
+	# end
 
-	get 'parties/:id/receipt/download' do 
-			party = Party.find(params[:id])
-			filename = @party.make_filename
-			send_file "./public/#{filename}", :filename => filename, :type => 'Application/octet-stream'
-	end
+	# get 'parties/:id/receipt/download' do 
+	# 		party = Party.find(params[:id])
+	# 		filename = @party.make_filename
+	# 		send_file "./public/#{filename}", :filename => filename, :type => 'Application/octet-stream'
+	# end
 #------Create------
+	
+	#refactored
+	# post '/foods' do
+	# 	food = Food.create(params[:food])
+	# 	redirect to '/foods'
+	# end
 
-	post '/foods' do
-		food = Food.create(params[:food])
-		redirect to '/foods'
-	end
-
-
-	post '/parties' do
-		party = Party.create(params[:party])
-		redirect to '/parties'
-	end
+	#refactored
+	# post '/parties' do
+	# 	party = Party.create(params[:party])
+	# 	redirect to '/parties'
+	# end
 
 	# post '/parties/:id/orders' do
 	# 	params[:new_order][:party_id] = params[:id]
@@ -113,95 +115,101 @@ enable :method_override
 	# 	redirect to "/parties/#{params[:id]}/orders/new"
 	# end
 
-	post '/orders' do 
-		order = Order.create(params[:order])
-		redirect to "/parties/#{order.party_id}"
-	end
+	# post '/orders' do 
+	# 	order = Order.create(params[:order])
+	# 	redirect to "/parties/#{order.party_id}"
+	# end
 
 #------Edit-------
+	# refactored
+	# get '/foods/:id/edit' do
+	# 	@food = Food.find(params[:id])
+	# 	erb :"/foods/edit"
+	# end
 
-	get '/foods/:id/edit' do
-		@food = Food.find(params[:id])
-		erb :"/foods/edit"
-	end
-
-	get '/parties/:id/edit' do
-		@party = Party.find(params[:id])
-		erb :"/parties/edit"
-	end
+	#refactored
+	# get '/parties/:id/edit' do
+	# 	@party = Party.find(params[:id])
+	# 	erb :"/parties/edit"
+	# end
 
 #------Update-------
+	# refactored
+	# patch '/foods/:id' do
+	# 	food = Food.find(params[:id])
+	# 	food.update(params[:food])
+	# 	redirect '/foods'
+	# end
 
-	patch '/foods/:id' do
-		food = Food.find(params[:id])
-		food.update(params[:food])
-		redirect '/foods'
-	end
+	# patch '/parties/:id' do
+	# 	party = Party.find(params[:id])
+	# 	party.update(params[:party])
+	# 	redirect '/parties'
+	# end
 
-	patch '/parties/:id' do
-		party = Party.find(params[:id])
-		party.update(params[:party])
-		redirect '/parties'
-	end
+	#refactored
+  # patch '/orders/:id' do
+  #   @order = Order.find(params[:id])
+  #   @order.update(params[:order])
+  #   redirect to "/parties/#{@order.party_id}"
+  # end 
 
-  patch '/orders/:id' do
-    @order = Order.find(params[:id])
-    @order.update(params[:order])
-    redirect to "/parties/#{@order.party_id}"
-  end 
-
-  patch "/parties/:id/checkout" do 
-  	@party = Party.find(params[:id])
-  	@party.update(meal_paid: "t")
-  	redirect to "/parties/#{@party.id}/receipt"
-  end
+  #refactored
+  # patch "/parties/:id/checkout" do 
+  # 	@party = Party.find(params[:id])
+  # 	@party.update(meal_paid: "t")
+  # 	redirect to "/parties/#{@party.id}/receipt"
+  # end
 
 #------Destroy------
+	#refactored
+	# delete '/foods/:id' do
+	# 	food = Food.find(params[:id])
+	# 	food.destroy
+	# 	redirect to '/foods'
+	# end
 
-	delete '/foods/:id' do
-		food = Food.find(params[:id])
-		food.destroy
-		redirect to '/foods'
-	end
+	# refactored
+	# delete '/parties/:id' do 
+	# 	party = Party.find(params[:id])
+	# 	party.destroy
+	# 	redirect to '/parties'
+	# end
 
-	delete '/parties/:id' do 
-		party = Party.find(params[:id])
-		party.destroy
-		redirect to '/parties'
-	end
-
-	delete '/orders/:id' do 
-    @order = Order.find(params[:id])
-    @order.destroy
-    redirect to "/parties/#{@order.party_id}"
-	end
+	#refactored
+	# delete '/orders/:id' do 
+ #    @order = Order.find(params[:id])
+ #    @order.destroy
+ #    redirect to "/parties/#{@order.party_id}"
+	# end
 
 	#------Receipt--------
 
-	get '/parties/:id/receipt' do
-		@party = Party.find(params[:id])
-		erb :'parties/receipt'
-	end
+	# get '/parties/:id/receipt' do
+	# 	@party = Party.find(params[:id])
+	# 	erb :'parties/receipt'
+	# end
 
 	# get '/parties/:id/checkout' do
 	# 	@party = Party.find(params[:id])
 	# 	erb :'parties/checkout'
 	# end
 
-	patch '/parties/:id/checkout' do
-		@party = Party.find(params[:id])
-    @party.total= @party.foods.sum(:price)
-		@party.paid = 'true'
-    @party.tips = params[:party][:tips]
-   	@party.save
+	#refactored
+	# patch '/parties/:id/checkout' do
+	# 	@party = Party.find(params[:id])
+ #    @party.total= @party.foods.sum(:price)
+	# 	@party.paid = 'true'
+ #    @party.tips = params[:party][:tips]
+ #   	@party.save
 		
-		redirect to "/parties/#{@party.id}/receipt"
-	end
+	# 	redirect to "/parties/#{@party.id}/receipt"
+	# end
 
-	get '/parties/:id/final' do
-    @party = Party.find(params[:id])
-    erb :'parties/final'
-  end
+	# get '/parties/:id/final' do
+ #    @party = Party.find(params[:id])
+ #    erb :'parties/final'
+ #  end
 
 
 

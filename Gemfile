@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'awesome_print'
 gem 'unicorn'
 
+# Controller
+gem 'sinatra-helpers'
+
 # Database
 gem 'pg'
 gem 'sinatra-activerecord', require: 'sinatra/activerecord'
